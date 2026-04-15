@@ -1,0 +1,63 @@
+# We had Python newer version installed so we have to install Python3.10.2 so that all things work correctly as newer pythons may not run that
+//Installing Libraries
+
+--> & "C:\Program Files\Python310\python.exe" -m pip install torch torchvision transformers matplotlib
+
+
+
+    #Loading the Dataset
+    🧠 Understand this (VERY IMPORTANT)
+    🔹 transforms.Resize((224, 224))
+        ViT needs fixed image size
+        So we resize all images
+    🔹 transforms.ToTensor()
+        Converts image → numbers (matrix)
+        AI models understand numbers, not images
+    🔹 datasets.CIFAR10(...)
+        Loads dataset of:
+        10 classes (cat, dog, car, etc.)
+        50,000 training images
+    🔹 download=True
+        Automatically downloads dataset
+
+        Running this train.py
+            --> &"C:\Program Files\Python310\python.exe" train.py
+    #Load Vision Transformer (CORE AI PART)
+        🧠 Understand this (VERY IMPORTANT)
+            🔹 ViTForImageClassification
+                Ready-made Vision Transformer
+                Already trained on huge dataset
+            🔹 from_pretrained(...)
+                Downloads model from internet
+                You are NOT training from scratch
+            🔹 num_labels=10
+                CIFAR-10 has 10 classes
+                So we change output layer
+            Running train.py
+                --> & "C:\Program Files\Python310\python.exe" train.py
+    #Training Loop (Model Learns Now)
+
+        🧠 Understand this (VERY IMPORTANT)
+        🔹 DataLoader
+            Feeds data in batches (32 images at a time)
+        🔹 device
+            Uses GPU if available (faster)
+            Else CPU
+        🔹 optimizer
+            Updates model weights
+            Adam = popular optimizer
+        🔹 Training Loop
+
+            Each iteration:
+
+            Forward pass → prediction
+            Compute loss → error
+            Backward pass → gradients
+            Update weights
+
+            👉 This is how model learns
+        Running train.py
+                --> & "C:\Program Files\Python310\python.exe" train.py
+				
+				
+Testing Model (Real Prediction) 🧠 What this does 🔹 train_data[0] Takes one image from dataset 🔹 unsqueeze(0) Converts image → batch format Model expects batch input 🔹 model.eval() Switches model to test mode 🔹 argmax Picks highest probability class
