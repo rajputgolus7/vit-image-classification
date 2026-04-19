@@ -62,3 +62,6 @@ for epoch in range(1):   # 1 epoch for now
         total_loss += loss.item()
 
     print(f"Epoch completed, Loss: {total_loss:.4f}")
+#saves to Google drive with name vit_model.pth
+torch.save(model.state_dict(), "/content/drive/MyDrive/vit_model.pth")
+print("Model saved to Google Drive")
